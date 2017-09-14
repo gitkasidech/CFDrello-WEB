@@ -7,6 +7,7 @@ spec:
   ports:
   - name: '80'
     port: 4200
+    protocol: TCP
     targetPort: 4200
     nodePort: 30356
   type: NodePort
