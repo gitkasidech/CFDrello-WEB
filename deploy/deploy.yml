@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: CFDrello-WEB
-        image: asia.gcr.io/socialenable4/trainee/CFDrello-WEB:TO_BE_REPLACE_TAG
+        image: asia.gcr.io/socialenable4/trainee/cfdrello-web:TO_BE_REPLACE_TAG
         ports:
         - name: CFDrello-WEB
           containerPort: 3000
