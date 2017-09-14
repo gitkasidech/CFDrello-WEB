@@ -16,7 +16,7 @@ spec:
         image: asia.gcr.io/socialenable4/trainee/cfdrelloweb:TO_BE_REPLACE_TAG
         env:
         - name: PORT
-          value: '4200'
+          value: '8080'
         ports:
         - name: cfdrelloweb
-          containerPort: 4200
+          containerPort: 8080
