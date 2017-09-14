@@ -16,4 +16,4 @@ spec:
         image: asia.gcr.io/socialenable4/trainee/cfdrelloweb:TO_BE_REPLACE_TAG
         ports:
         - name: cfdrelloweb
-          containerPort: 3000
+          containerPort: 4200
