@@ -8,7 +8,7 @@ build_docker_image_prod:
   stage: build_image
   script:
     - "echo $(date +%s) >> g_timestamp"
-    - docker build -t aasia.gcr.io/socialenable4/trainee/cfdrelloweb:`cat g_timestamp`-prod .
+    - docker build -t asia.gcr.io/socialenable4/trainee/cfdrelloweb:`cat g_timestamp`-prod .
   artifacts:
     paths:
     - g_timestamp
@@ -19,14 +19,14 @@ build_docker_image_prod:
 push_docker_image:
   stage: push_image
   script:
-    - gcloud docker -- push aasia.gcr.io/socialenable4/trainee/cfdrelloweb
+    - gcloud docker -- push asia.gcr.io/socialenable4/trainee/cfdrelloweb
   only:
     - master
 
 clean_image:
   stage: clean_image
   script:
-    - docker images | grep aasia.gcr.io/socialenable4/trainee/cfdrelloweb | awk '{ print $3 }' | uniq | awk 'NR > 4 { print }' | xargs -i docker rmi {} -f
+    - docker images | grep asia.gcr.io/socialenable4/trainee/cfdrelloweb | awk '{ print $3 }' | uniq | awk 'NR > 4 { print }' | xargs -i docker rmi {} -f
   allow_failure: true
   only:
     - master
