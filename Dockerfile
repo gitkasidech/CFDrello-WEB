@@ -19,5 +19,5 @@ COPY package.json /usr/src/app/
 RUN npm install && npm cache clean --force
 COPY . /usr/src/app
 EXPOSE 4200
-
-CMD [ "npm", "start:prod" ]
+CMD npm run start:prod
+#CMD [ "npm", "start:prod" ]
