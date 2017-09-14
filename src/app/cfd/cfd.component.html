@@ -1,0 +1,43 @@
+<div style="width: 100%;" align="center">
+  <br><br>
+  <table border="0" width="80%">
+    <tr>
+      <td width="80%">
+        <ul class="nav nav-tabs">
+          <li role="presentation" class="active"><a href="/graph">CFD Chart</a></li>
+        </ul>
+        <br>
+      </td>
+
+    </tr>
+    <tr>
+      <td valign="top">
+        <table border="0">
+          <tr>
+            <td width="45%">
+              <my-date-range-picker [options]="myDateRangePickerOptions" (dateRangeChanged)="onDateRangeChanged($event)"></my-date-range-picker>
+            </td>
+            <td valign="top">
+              <div class="btn-group">
+                <button type="button" id="thisweek" class="btn btn-primary" (click)="DateThisWeek()" >This Week</button>
+                <button type="button" id="lastweek" class="btn btn-primary" (click)="DateLastWeek()">Last Week</button>
+                <button type="button" id="thismonth" class="btn btn-primary" (click)="DateThisMonth()">This Month</button>
+                <button type="button" id="lastmonth" class="btn btn-primary" (click)="DateLastMonth()">Last Month</button>
+              </div>
+            </td>
+          </tr>
+        </table>
+        <br><br><br>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div style="width:100%" id="container"></div>
+        <!-- <div id="main" style="width: 600px;height:400px;"></div> -->
+        <br><br><br>
+      </td>
+
+    </tr>
+
+  </table>
+</div>
