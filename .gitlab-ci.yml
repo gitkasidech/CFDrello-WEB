@@ -8,7 +8,7 @@ build_docker_image_prod:
   stage: build_image
   script:
     - "echo $(date +%s) >> g_timestamp"
-    - docker build -t asia.gcr.io/socialenable4/trainee/cfdrelloweb:`cat g_timestamp`-prod .
+    - docker build -t asia.gcr.io/socialenable4/trainee/cfdrelloweb:`cat g_timestamp` .
   artifacts:
     paths:
     - g_timestamp
