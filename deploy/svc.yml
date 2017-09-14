@@ -1,7 +1,7 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: CFDrello-WEB
+  name: cfdrelloweb
   namespace: trainee
 spec:
   ports:

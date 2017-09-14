@@ -2,18 +2,18 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: CFDrello-WEB
+  name: cfdrelloweb
   namespace: trainee
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: CFDrello-WEB
+        app: cfdrelloweb
     spec:
       containers:
-      - name: CFDrello-WEB
-        image: asia.gcr.io/socialenable4/trainee/cfdrello-web:TO_BE_REPLACE_TAG
+      - name: cfdrelloweb
+        image: asia.gcr.io/socialenable4/trainee/cfdrelloweb:TO_BE_REPLACE_TAG
         ports:
-        - name: CFDrello-WEB
+        - name: cfdrelloweb
           containerPort: 3000
