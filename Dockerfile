@@ -10,7 +10,7 @@
 
 # EXPOSE 4200
 # CMD npm run start:prod
-FROM node:8.1.1
+FROM node:6.11.0
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
