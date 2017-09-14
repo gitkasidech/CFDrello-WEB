@@ -4,11 +4,12 @@ metadata:
   name: cfdrelloweb
   namespace: trainee
 spec:
+  selector:
+    app: cfdrelloweb
+  type: NodePort
   ports:
-  - name: '8080'
+  - name: cfdrelloweb
+    protocol: TCP
     port: 8080
     targetPort: 8080
     nodePort: 30356
-  type: NodePort
-  selector:
-    app: trainee
