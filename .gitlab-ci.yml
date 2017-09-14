@@ -1,0 +1,47 @@
+stages:
+  - build_image
+  - push_image
+  - clean_image
+  - deploy
+
+build_docker_image_prod:
+  stage: build_image
+  script:
+    - "echo $(date +%s) >> g_timestamp"
+    - docker build -t asia.gcr.io/socialenable4/trainee/CFDrello-WEB:production .
+    - "docker tag asia.gcr.io/socialenable4/trainee/CFDrello-WEB:production \"asia.gcr.io/socialenable4/trainee/CFDrello-WEB:`cat g_timestamp`\""
+  artifacts:
+    paths:
+    - g_timestamp
+  only:
+    - master
+
+push_docker_image:
+  stage: push_image
+  script:
+    - gcloud docker -- push asia.gcr.io/socialenable4/trainee/CFDrello-WEB
+  only:
+    - master
+
+clean_image:
+  stage: clean_image
+  script:
+    - docker images | grep asia.gcr.io/socialenable4/trainee/CFDrello-WEB | awk '{ print $3 }' | uniq | awk 'NR > 4 { print }' | xargs -i docker rmi {} -f
+  allow_failure: true
+  only:
+    - master
+
+deploy_prod:
+  stage: deploy
+  script:
+    - gcloud container clusters get-credentials experiment --zone asia-east1-a --project socialenable4
+    - "sed -i -e \"s/TO_BE_REPLACE_TAG/`cat g_timestamp`/g\" deploy/deploy.yml"
+    - "kubectl create -f deploy/deploy.yml >/dev/null 2>&1 || :"
+    - kubectl apply -f deploy/deploy.yml
+    - "kubectl create -f deploy/svc.yml >/dev/null 2>&1 || :"
+    - kubectl apply -f deploy/svc.yml
+  environment:
+    name: production
+  when: manual
+  only:
+    - master

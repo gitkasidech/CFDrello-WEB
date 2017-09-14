@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: CFDreoo-WEB
+  namespace: trainee
+spec:
+  ports:
+  - name: '80'
+    port: 4200
+    targetPort: 4200
+    nodePort: 30356
+  type: NodePort
+  selector:
+    app: trainee
