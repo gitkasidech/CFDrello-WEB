@@ -5,7 +5,8 @@ metadata:
   namespace: trainee
 spec:
   ports:
-  - port: 4200
+  - name: '80'
+    port: 4200
     targetPort: 4200
     nodePort: 30356
   type: NodePort
