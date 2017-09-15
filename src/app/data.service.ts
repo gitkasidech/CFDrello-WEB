@@ -23,16 +23,16 @@ export class DataService {
 
   getBoards(id) {
     console.log("KK")
-    return this.http.get('http://localhost:3000/boards/'+id)
+    return this.http.get('http://104.199.181.163:30355/boards/'+id)
     .map((res) => res.json())
     
   }
   getList(idBoard){
-    return this.http.get('http://localhost:3000/lists/'+idBoard)
+    return this.http.get('http://104.199.181.163:30355/lists/'+idBoard)
     .map((res) => res.json());
   }
   getBoardsLists(idD){
-    return this.http.get('http://localhost:3000/alldashboards/'+idD)
+    return this.http.get('http://104.199.181.163:30355/alldashboards/'+idD)
     .map((res) => res.json());
     
   }

@@ -71,7 +71,7 @@ export class CfdComponent implements OnInit {
 
             const headers = new Headers();
             headers.append('Content-Type', 'application/json');
-            this.http.post('http://localhost:3000/createlcad/',
+            this.http.post('http://104.199.181.163:30355/createlcad/',
               JSON.stringify(this.dashboardsname[i]), { headers: headers })
               .subscribe(data => {
                 console.log(data['_body']);
@@ -168,7 +168,7 @@ export class CfdComponent implements OnInit {
 
             const headers = new Headers();
             headers.append('Content-Type', 'application/json');
-            this.http.post('http://localhost:3000/createlcad/',
+            this.http.post('http://104.199.181.163:30355/createlcad/',
               JSON.stringify(this.dashboardsname[i]), { headers: headers })
               .subscribe(data => {
                 console.log(data['_body']);
@@ -262,7 +262,7 @@ export class CfdComponent implements OnInit {
     // let idBoards = localStorage.getItem("namedashboards");
     // const id = localStorage.getItem("id")
     // console.log(id);
-    // this.http.get('http://localhost:3000/dateactioncards/' + idBoards + '/' + this.startDate + '/' + this.endDate)
+    // this.http.get('http://104.199.181.163:30355/dateactioncards/' + idBoards + '/' + this.startDate + '/' + this.endDate)
     //   .subscribe(data => {
     //     console.log(data);
     //     var ch = data['_body'];
@@ -361,7 +361,7 @@ export class CfdComponent implements OnInit {
     let idBoards = localStorage.getItem("namedashboards");
     const id = localStorage.getItem("id")
     console.log(id);
-    this.http.get('http://localhost:3000/dateactioncards/' + idBoards + '/' + this.startDate + '/' + this.endDate)
+    this.http.get('http://104.199.181.163:30355/dateactioncards/' + idBoards + '/' + this.startDate + '/' + this.endDate)
       .subscribe(data => {
         console.log(data);
         var ch = data['_body'];
@@ -457,7 +457,7 @@ export class CfdComponent implements OnInit {
     let idBoards = localStorage.getItem("namedashboards");
     const id = localStorage.getItem("id")
     console.log(id);
-    this.http.get('http://localhost:3000/dateactioncards/' + idBoards + '/' + this.startDate + '/' + this.endDate)
+    this.http.get('http://104.199.181.163:30355/dateactioncards/' + idBoards + '/' + this.startDate + '/' + this.endDate)
       .subscribe(data => {
         console.log(data);
         var ch = data['_body'];
@@ -552,7 +552,7 @@ export class CfdComponent implements OnInit {
     let idBoards = localStorage.getItem("namedashboards");
     const id = localStorage.getItem("id")
     console.log(id);
-    this.http.get('http://localhost:3000/dateactioncards/' + idBoards + '/' + this.startDate + '/' + this.endDate)
+    this.http.get('http://104.199.181.163:30355/dateactioncards/' + idBoards + '/' + this.startDate + '/' + this.endDate)
       .subscribe(data => {
         console.log(data);
         var ch = data['_body'];
@@ -651,7 +651,7 @@ export class CfdComponent implements OnInit {
     const id = localStorage.getItem("id")
     console.log(id);
     if (this.startDate != this.endDate) {
-      this.http.get('http://localhost:3000/dateactioncards/' + idBoards + '/' + this.startDate + '/' + this.endDate)
+      this.http.get('http://104.199.181.163:30355/dateactioncards/' + idBoards + '/' + this.startDate + '/' + this.endDate)
         .subscribe(data => {
           console.log(data);
           var ch = data['_body'];
@@ -725,7 +725,7 @@ export class CfdComponent implements OnInit {
         });
     }else if (this.startDate = this.endDate) {
       console.log('WTF');
-      this.http.get('http://localhost:3000/dateactioncards/' + idBoards + '/' + this.startDate + '/' + this.endDate)
+      this.http.get('http://104.199.181.163:30355/dateactioncards/' + idBoards + '/' + this.startDate + '/' + this.endDate)
       .subscribe(data => {
         console.log(data);
         var ch = data['_body'];

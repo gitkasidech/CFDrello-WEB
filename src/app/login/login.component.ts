@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/yourdashboard']);
       
     }else{
-      window.location.href = "http://localhost:3000/login"
+      window.location.href = "http://104.199.181.163:30355/login"
     }
 
   }

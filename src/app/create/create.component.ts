@@ -129,7 +129,7 @@ export class CreateComponent implements OnInit {
 
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        this.http.post('http://localhost:3000/dashboards',
+        this.http.post('http://104.199.181.163:30355/dashboards',
             JSON.stringify(value), { headers: headers })
             .map(response => response.json())
             .subscribe(response => {
