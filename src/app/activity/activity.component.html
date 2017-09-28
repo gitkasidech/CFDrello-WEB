@@ -1,0 +1,109 @@
+<p>
+  <app-graphindex></app-graphindex>
+</p>
+<go-top-button [html]="'<i class=\'fa fa-arrow-up\'></i>'" [animate]="true" [speed]="50" [acceleration]="2" [scrollDistance]="300"
+  [styles]="{
+     'border-radius': '20px 20px 20px 20px',
+     'right': '5px',
+     'color': 'gray',
+     'border': '5px solid',
+     'line-height': '20px'
+     
+  }">
+</go-top-button>
+
+<div class="container">
+  <div class="w3-panel w3-border w3-round-xlarge" style="width: 100%;" align="center">
+    <br><br>
+    <table border="0" width="80%">
+      <tr>
+        <td width="80%">
+          <ul class="nav nav-tabs">
+            <li role="presentation" class="active"><a>Recent Activity</a></li>
+
+          </ul>
+          <br>
+        </td>
+      </tr>
+      <tr>
+        <td valign="top">
+          <table border="0">
+            <tr>
+              <td width="45%">
+                <my-date-range-picker [options]="myDateRangePickerOptions" (dateRangeChanged)="onDateRangeChanged($event)"></my-date-range-picker>
+              </td>
+              <td valign="top">
+                <div class="btn-group">
+                  <button type="button" id="thisweek" class="btn btn-primary" (click)="DateThisWeek()">This Week</button>
+                  <button type="button" id="lastweek" class="btn btn-primary" (click)="DateLastWeek()">Last Week</button>
+                  <button type="button" id="thismonth" class="btn btn-primary" (click)="DateThisMonth()">This Month</button>
+                  <button type="button" id="lastmonth" class="btn btn-primary" (click)="DateLastMonth()">Last Month</button>
+                </div>
+              </td>
+            </tr>
+          </table>
+          <br>
+        </td>
+      </tr>
+      <tr *ngFor="let bodys of body | paginate: { itemsPerPage: 15, currentPage: p }">
+
+        <td *ngIf="bodys && bodys.type == 'commentCard'">
+          <div class="w3-example " align="center">
+            <br>
+            <table border="0" width="100%">
+              <tr width="75%">
+                <td class="space-hog" valign="top" align="left" style="width: 80px; word-break: break-all;">
+                  <p><b>{{bodys.memberCreator.fullName}}</b>&nbsp;&nbsp;commentd on <a target="_blank" href="https://trello.com/c/{{bodys.data.card.shortLink}}"><b>{{bodys.data.card.name}}</b></a>
+                    <br><br>
+                </td>
+                <td width="15%" valign="top" align="right">
+                  <p>{{bodys.timeago}}</p>
+                </td>
+              </tr>
+              <tr>
+                <td class="space-hog" align="left" style="width: 80px; word-break: break-all;">
+                  <p [innerHTML]="bodys.data.text"></p>
+                  <br>
+                </td>
+                <td></td>
+              </tr>
+            </table>
+          </div>
+        </td>
+
+
+        <td *ngIf="bodys.type == 'updateCard' ">
+          <div class="w3-example w3-leftbar w3-border-green" align="center">
+            <br>
+            <table border="0" width="100%">
+              <tr width="75%">
+                <td class="space-hog" valign="top" align="left" style="width: 80px; word-break: break-all;">
+                  <p><b>{{bodys.memberCreator.fullName}}</b>&nbsp;&nbsp;moved&nbsp; <a target="_blank" href="https://trello.com/c/{{bodys.data.card.shortLink}}"><b>{{bodys.data.card.name}}</b></a>
+                    <br><br>
+                </td>
+                <td width="20%" valign="top" align="right">
+                  <p>{{bodys.timeago}}</p>
+                </td>
+              </tr>
+              <tr>
+                <td class="space-hog" align="left" style="width: 70px; word-break: break-all;">
+                  <p>From <b>{{bodys.data.listBefore && bodys.data.listBefore.name}}</b> to <b>{{bodys.data.listAfter && bodys.data.listAfter.name}}</b></p>
+                  <br>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <br><br>
+          <h1 align="center">{{ch}}</h1>
+          
+        </td>
+      </tr>
+    </table><br><br><br><br>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div>
+<br><br><br>

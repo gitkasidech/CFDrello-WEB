@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">
+
+</head>
+
+<body>
+  <p>
+    <app-head>Loading...</app-head>
+  </p>
+  
+  <go-top-button [html]="'<i class=\'fa fa-arrow-up\'></i>'" [animate]="true" [speed]="50" [acceleration]="2" [scrollDistance]="300"
+    [styles]="{
+       'border-radius': '20px 20px 20px 20px',
+       'right': '5px',
+       'color': 'gray',
+       'border': '5px solid',
+       'line-height': '20px'
+       
+    }">top
+  </go-top-button>
+  <div class="container">
+    <form #dashbordsForm="ngForm" (ngSubmit)="onSubmit(dashbordsForm.value)" novalidate>
+
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" #nameRef="ngModel" required class="form-control" (change)="setName($event.target.value)" name="name" [ngModel]="name">
+        <div [hidden]="nameRef.valid" class="alert alert-danger">
+          Please enter a name
+        </div>
+      </div>
+      <!-- <br> -->
+
+      <div class="form-group">
+        <label>Boards</label>
+        <select class="form-control" id="boards" required (change)="selectBoards($event.target.value)" name="idBoard" ngModel>
+                <option *ngFor="let board of boards" [value]="board.id">{{board.name}}</option>
+        </select>
+      </div>
+
+      <br>
+      <div class="w3-panel w3-border w3-round-xlarge">
+        <div>
+          <div class="form-group">
+            <table width="100%" border="0">
+              <tr>
+                <td width="45%">
+                  <label for="sel2">Backlog cards:</label>
+                  <!-- {{BacklogName.join(',')}} -->
+                  <select multiple class="form-control" id="back" (change)="backlogCards($event.target.value)">
+                    <option *ngFor="let list of listcards" [value]="list.id">{{list.name}}</option>
+                </select>
+                </td>
+                <td width="2%">
+                </td>
+                <td width="45%">
+                  <label for="sel2">Selected Backlog cards:</label>
+                  <select multiple class="form-control" id="backed" (change)="selectedBacklog($event.target.value)">
+                    <option *ngFor="let backlog of Backlog" [value]="backlog.id">{{backlog.name}}</option>
+                </select>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="form-group">
+                    <label>Select color for Backlog cards:</label>
+                    <input class="w3-input w3-border w3-round-large" id="color1" [(colorPicker)]="color5" [style.background]="color5" [value]="color5"
+                      name="colorBack" [ngModel]="color5">
+                  </div>
+                </td>
+                <td>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+
+
+      <br>
+
+
+      <div class="w3-panel w3-border w3-round-xlarge">
+        <div class="form-group">
+          <table width="100%">
+            <tr>
+              <td width='45%'>
+                <label for="sel2">Inprogress cards: </label>
+                <!--{{InprogressName.join(',')}}-->
+                <select multiple class="form-control" id="in" (change)="inprogressCards($event.target.value)">
+                  <option *ngFor="let list of listcards" [value]="list.id">{{list.name}}</option>
+              </select>
+              </td>
+              <td width='2%'></td>
+              <td width='45%'>
+                <label for="sel2">Selected Inprogress cards: </label>
+                <select multiple class="form-control" id="ined" (change)="selectedInprogress($event.target.value)">
+                  <option *ngFor="let inprogress of Inprogress" [value]="inprogress.id">{{inprogress.name}}</option>
+              </select>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="form-group">
+                  <label>Select color for Inprogress cards:</label>
+                  <input class="w3-input w3-border w3-round-large" id="color2" [(colorPicker)]="color2" [style.background]="color2" [value]="color2"
+                    name="colorInpr" [ngModel]="color2">
+                </div>
+              </td>
+              <td>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+
+      <br>
+
+
+      <div class="w3-panel w3-border w3-round-xlarge">
+        <div class="form-group">
+          <table width="100%">
+            <tr>
+              <td width="45%">
+                <label for="sel2">Complete cards:</label>
+                <!-- {{CompleteName.join(',')}}-->
+                <select multiple class="form-control" id="com" (change)="completeCards($event.target.value)">
+                      <option *ngFor="let list of listcards" [value]="list.id">{{list.name}}</option>
+                  </select>
+              </td>
+              <td width="2%">
+              </td>
+              <td width="45%">
+                <label for="sel2">Selected Complete cards:</label>
+                <!-- {{CompleteName.join(',')}}-->
+                <select multiple class="form-control" id="comed" (change)="selectedComplete($event.target.value)">
+                      <option *ngFor="let complete of Complete" [value]="complete.id">{{complete.name}}</option>
+                  </select>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="form-group">
+                  <label>Select color for Complete cards:  </label>
+                  <input class="w3-input w3-border w3-round-large" id="color3" [(colorPicker)]="color4" [style.background]="color4" [value]="color4" name="colorComp" [ngModel]="color4">
+                </div>
+              </td>
+              <td>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+
+      <br><br>
+
+      
+      <button type="submit" [disabled]="!dashbordsForm.form.valid" class="w3-button w3-green">Done</button>
+
+    </form>
+  </div>
+
+  <br><br>
+  <br><br>
+  <br><br>
+  <br><br>
+
+
+</body>
+
+</html>
