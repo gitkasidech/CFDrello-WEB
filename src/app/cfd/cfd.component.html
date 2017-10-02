@@ -1,6 +1,6 @@
-<p>
+<!-- <p>
   <app-graphindex></app-graphindex>
-</p>
+</p> -->
 <div class="container">
   <div class="w3-panel w3-border w3-round-xlarge" style="width: 100%;" align="center">
     <br><br>
@@ -23,10 +23,10 @@
               </td>
               <td valign="top">
                 <div class="btn-group">
-                  <button type="button" id="thisweek" class="btn btn-primary" (click)="DateThisWeek()">This Week</button>
-                  <button type="button" id="lastweek" class="btn btn-primary" (click)="DateLastWeek()">Last Week</button>
-                  <button type="button" id="thismonth" class="btn btn-primary" (click)="DateThisMonth()">This Month</button>
-                  <button type="button" id="lastmonth" class="btn btn-primary" (click)="DateLastMonth()">Last Month</button>
+                  <button type="button" id="thisweek" class="{{class1}}" (click)="DateThisWeek('thisweek')">This Week</button>
+                  <button type="button" id="lastweek" class="{{class2}}" (click)="DateLastWeek('lastweek')">Last Week</button>
+                  <button type="button" id="thismonth" class="{{class3}}" (click)="DateThisMonth('thismonth')">This Month</button>
+                  <button type="button" id="lastmonth" class="{{class4}}" (click)="DateLastMonth('lastmonth')">Last Month</button>
                 </div>
               </td>
             </tr>

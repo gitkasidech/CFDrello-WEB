@@ -1,16 +1,5 @@
-<p>
-  <app-graphindex></app-graphindex>
-</p>
-<go-top-button [html]="'<i class=\'fa fa-arrow-up\'></i>'" [animate]="true" [speed]="50" [acceleration]="2" [scrollDistance]="300"
-  [styles]="{
-     'border-radius': '20px 20px 20px 20px',
-     'right': '5px',
-     'color': 'gray',
-     'border': '5px solid',
-     'line-height': '20px'
-     
-  }">
-</go-top-button>
+
+
 
 <div class="container">
   <div class="w3-panel w3-border w3-round-xlarge" style="width: 100%;" align="center">
@@ -34,10 +23,10 @@
               </td>
               <td valign="top">
                 <div class="btn-group">
-                  <button type="button" id="thisweek" class="btn btn-primary" (click)="DateThisWeek()">This Week</button>
-                  <button type="button" id="lastweek" class="btn btn-primary" (click)="DateLastWeek()">Last Week</button>
-                  <button type="button" id="thismonth" class="btn btn-primary" (click)="DateThisMonth()">This Month</button>
-                  <button type="button" id="lastmonth" class="btn btn-primary" (click)="DateLastMonth()">Last Month</button>
+                  <button type="button" id="thisweek" class="{{class1}}" (click)="DateThisWeek('thisweek')">This Week</button>
+                  <button type="button" id="lastweek" class="{{class2}}" (click)="DateLastWeek('lastweek')">Last Week</button>
+                  <button type="button" id="thismonth" class="{{class3}}" (click)="DateThisMonth('thismonth')">This Month</button>
+                  <button type="button" id="lastmonth" class="{{class4}}" (click)="DateLastMonth('lastmonth')">Last Month</button>
                 </div>
               </td>
             </tr>
@@ -48,7 +37,7 @@
       <tr *ngFor="let bodys of body | paginate: { itemsPerPage: 15, currentPage: p }">
 
         <td *ngIf="bodys && bodys.type == 'commentCard'">
-          <div class="w3-example " align="center">
+          <div class="well well-lg" align="center">
             <br>
             <table border="0" width="100%">
               <tr width="75%">
@@ -72,7 +61,7 @@
         </td>
 
 
-        <td *ngIf="bodys.type == 'updateCard' ">
+        <td *ngIf="bodys.type == 'updateCard'  && bodys.data.listBefore">
           <div class="w3-example w3-leftbar w3-border-green" align="center">
             <br>
             <table border="0" width="100%">
@@ -99,11 +88,12 @@
         <td>
           <br><br>
           <h1 align="center">{{ch}}</h1>
-          
+
         </td>
       </tr>
     </table><br><br><br><br>
     <pagination-controls (pageChange)="p = $event"></pagination-controls>
   </div>
+ 
 </div>
 <br><br><br>

@@ -11,6 +11,11 @@ import { IMyDrpOptions, IMyDateRangeModel } from 'mydaterangepicker';
 
 })
 export class ActivityComponent implements OnInit {
+  class1="btn btn-info";
+  class2="btn btn-primary";
+  class3="btn btn-primary";
+  class4="btn btn-primary";
+  eventbtn: any;
   ch: any;
   i = 0;
   activity = [];
@@ -113,6 +118,7 @@ export class ActivityComponent implements OnInit {
             if(obj){
               obj[item].data.text = obj[item].data.text.replace(/\\/g, '');
             }
+
             console.log(obj[item].data.text);
           }
 
@@ -130,7 +136,12 @@ export class ActivityComponent implements OnInit {
    
   }
 
-  DateThisWeek() {
+  DateThisWeek(event: any) {
+    this.eventbtn=event;
+    this.class1="btn btn-info";
+    this.class2="btn btn-primary";
+    this.class3="btn btn-primary";
+    this.class4="btn btn-primary";
     let d = new Date()
     d.setDate(d.getDate() - 1)
     let endDate = convertDates(d)
@@ -177,6 +188,7 @@ export class ActivityComponent implements OnInit {
             if(obj){
               obj[item].data.text = obj[item].data.text.replace(/\\/g, '');
             }
+            
             console.log(obj[item].data.text);
           }
 
@@ -192,6 +204,11 @@ export class ActivityComponent implements OnInit {
   }
 
   DateLastWeek() {
+    
+    this.class1="btn btn-primary";
+    this.class2="btn btn-info";
+    this.class3="btn btn-primary";
+    this.class4="btn btn-primary";
     let d = new Date()
     d.setDate(d.getDate() - 1)
     let day = d.getDay()
@@ -242,6 +259,7 @@ export class ActivityComponent implements OnInit {
             if(obj){
               obj[item].data.text = obj[item].data.text.replace(/\\/g, '');
             }
+            
             console.log(obj[item].data.text);
           }
 
@@ -255,6 +273,11 @@ export class ActivityComponent implements OnInit {
   }
 
   DateThisMonth() {
+    
+    this.class1="btn btn-primary";
+    this.class2="btn btn-primary";
+    this.class3="btn btn-info";
+    this.class4="btn btn-primary";
     let dStart = new Date()
     let dEnd = new Date()
     let date = dStart.getDate()
@@ -304,6 +327,7 @@ export class ActivityComponent implements OnInit {
             if(obj){
               obj[item].data.text = obj[item].data.text.replace(/\\/g, '');
             }
+            
             console.log(obj[item].data.text);
           }
 
@@ -319,6 +343,11 @@ export class ActivityComponent implements OnInit {
 
 
   DateLastMonth() {
+    
+    this.class1="btn btn-primary";
+    this.class2="btn btn-primary";
+    this.class3="btn btn-primary";
+    this.class4="btn btn-info";
     let dStart = new Date()
     let dEnd = new Date()
     dStart.setDate(1)
@@ -367,6 +396,7 @@ export class ActivityComponent implements OnInit {
             if(obj){
               obj[item].data.text = obj[item].data.text.replace(/\\/g, '');
             }
+            
             console.log(obj[item].data.text);
           }
 
@@ -393,6 +423,10 @@ export class ActivityComponent implements OnInit {
   };
 
   onDateRangeChanged(event: IMyDateRangeModel) {
+    this.class1="btn btn-primary";
+    this.class2="btn btn-primary";
+    this.class3="btn btn-primary";
+    this.class4="btn btn-primary";
     console.log(event.formatted);
     this.startDate = event.formatted.substring(0, 10)
     this.endDate = event.formatted.substring(13)
@@ -431,6 +465,7 @@ export class ActivityComponent implements OnInit {
               if(obj){
                 obj[item].data.text = obj[item].data.text.replace(/\\/g, '');
               }
+              
               console.log(obj[item].data.text);
             }
   
@@ -471,6 +506,7 @@ export class ActivityComponent implements OnInit {
               if(obj){
                 obj[item].data.text = obj[item].data.text.replace(/\\/g, '');
               }
+            
               console.log(obj[item].data.text);
             }
   
@@ -487,10 +523,10 @@ export class ActivityComponent implements OnInit {
   }
 
   ngOnInit() {
-
+   
   }
 
-
+  
 }
 export const convertDates = (d) => {
   let month = '' + (d.getMonth() + 1)

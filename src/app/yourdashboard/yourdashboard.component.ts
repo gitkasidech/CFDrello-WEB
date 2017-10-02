@@ -49,57 +49,13 @@ export class YourdashboardComponent implements OnInit {
 
  
     LinkCreate(){
-      
-      // this.myService.myMethod(this.id);
-      // console.log(this.id)
-      // this.idMember = this.id
-      // var convertedString=JSON.stringify(this.idMember)
-      // var resp = convertedString.substring(7, 31);;
-      // console.log(convertedString)
-      // console.log(resp)
-      this.router.navigate(['/create']);
-      // this.http.get('http://localhost:7777/boards/'+this.id).subscribe(data => {
-      //     console.log(data);
-      
-          
-      //   }); 
+      this.router.navigate(['/create']); 
     }
 
     sendToChart(value: any){
         console.log(value);
         localStorage.setItem("namedashboards",value);
-        this.router.navigate(['/cfd']);
-        // var i = 0;
-        // for (let items in this.dashboardsname) {
-        //     if (this.dashboardsname[i]._id == value) {
-        //         console.log(i)
-        //         // this.InprogressName.push(this.listsUpdate[i].name)
-        //         // this.InprogressId.push(this.listsUpdate[i].id)
-        //         const token = localStorage.getItem("token")
-        //         this.dashboardsname[i]['token'] = token;
-        //         console.log('value of chart is  ', this.dashboardsname[i])
-
-        //         const headers = new Headers();
-        //         headers.append('Content-Type', 'application/json');
-        //         this.http.post('http://localhost:4444/createlcad/',
-        //             JSON.stringify(this.dashboardsname[i]), { headers: headers })
-        //             // .map(response => response.json())
-        //             .subscribe(response => {
-        //                 if (response.json) {
-        //                     console.log("You able to send data to DB");
-        //                     console.log(response);
-        //                     // this.router.navigate(['/graph']);
-        //                 }else if(!response.json){
-        //                     console.log("You can't send data to DB");
-        //                 }
-                        
-        //             })
-        //     } 
-        //     i++;
-        // }
-        
-
-
+        this.router.navigate(['/report']);
     }
     
     

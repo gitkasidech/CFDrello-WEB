@@ -10,6 +10,7 @@ import {CreateComponent} from './create/create.component';
 import { GettokenComponent } from './gettoken/gettoken.component';
 import { CfdComponent } from './cfd/cfd.component';
 import { ActivityComponent } from './activity/activity.component'
+import { GraphindexComponent } from './graphindex/graphindex.component'
 const appRoutes: Routes=[
      {
     path: '',
@@ -30,15 +31,20 @@ const appRoutes: Routes=[
     ,canActivate: [AuthGuard]
   },
   {
-    path: 'cfd',
-    component: CfdComponent
+    path: 'report',
+    component: GraphindexComponent
     ,canActivate: [AuthGuard]
   },
-  {
-    path: 'activity',
-    component: ActivityComponent
-    ,canActivate: [AuthGuard]
-  },
+  // {
+  //   path: 'cfd',
+  //   component: CfdComponent
+  //   ,canActivate: [AuthGuard]
+  // },
+  // {
+  //   path: 'activity',
+  //   component: ActivityComponent
+  //   ,canActivate: [AuthGuard]
+  // },
   {
     path: '**',
     redirectTo: '/',
