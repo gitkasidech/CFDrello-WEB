@@ -20,10 +20,10 @@ declare var jQuery: any;
 
 
 export class CfdComponent implements OnInit {
-  class1="btn btn-info";
-  class2="btn btn-primary";
-  class3="btn btn-primary";
-  class4="btn btn-primary";
+  class1 = "btn btn-info";
+  class2 = "btn btn-primary";
+  class3 = "btn btn-primary";
+  class4 = "btn btn-primary";
   eventbtn: any;
   end: any;
   Hours = [];
@@ -48,18 +48,18 @@ export class CfdComponent implements OnInit {
   timeStamp = [];
   dashboardsname = [];
   d1 = new Date()
-  month1Old = this.d1.setMonth(this.d1.getMonth()-3)
+  month1Old = this.d1.setMonth(this.d1.getMonth() - 3)
   year1 = this.d1.getFullYear()
-  month1 = this.d1.getMonth()+1
+  month1 = this.d1.getMonth() + 1
   date1 = this.d1.getDate()
   d2 = new Date()
-  month2Old = this.d2.setDate(this.d2.getDate()+1) 
-  month2 = this.d2.getMonth() + 1 
-  date2 = this.d2.getDate() 
+  month2Old = this.d2.setDate(this.d2.getDate() + 1)
+  month2 = this.d2.getMonth() + 1
+  date2 = this.d2.getDate()
   year2 = this.d2.getFullYear()
-  
+
   constructor(private myService: DataService, private formBuilder: FormBuilder, private http: Http) {
-   
+
     const id = localStorage.getItem("id")
     console.log(id);
     this.myService.getBoardsLists(id)
@@ -73,7 +73,7 @@ export class CfdComponent implements OnInit {
             const token = localStorage.getItem("token")
             this.dashboardsname[i]['token'] = token;
             console.log('value of chart is  ', this.dashboardsname[i]);
-            localStorage.setItem("idboard",this.dashboardsname[i].idBoard);
+            localStorage.setItem("idboard", this.dashboardsname[i].idBoard);
             console.log(localStorage.getItem("idboard"));
             const headers = new Headers();
             headers.append('Content-Type', 'application/json');
@@ -87,69 +87,149 @@ export class CfdComponent implements OnInit {
                 this.colorComp = localStorage.getItem("colorComp");
                 this.colorInpro = localStorage.getItem("colorInpro");
                 this.colorBack = localStorage.getItem("colorBack");
-                jQuery('#container').highcharts({
-                  chart: {
-                    type: 'area'
-                  },
-                  title: {
-                    text: ''
-                  },
-                  xAxis: {
-                    categories: obj.listDate,
-                    labels: {
-                      rotation: -45,
-                      style: {
-                        fontSize: '13px',
-                        fontFamily: 'Verdana, sans-serif'
-                      }
-                    }
-                  },
-                  yAxis: {
-                    title: {
-                      text: 'Cards'
+                if (obj.listDate) {
+                  jQuery('#container').highcharts({
+                    chart: {
+                      type: 'area'
                     },
-                    labels: {
-                      formatter: function () {
-                        return this.value;
+                    title: {
+                      text: ''
+                    },
+                    xAxis: {
+                      categories: obj.listDate,
+                      labels: {
+                        rotation: -45,
+                        style: {
+                          fontSize: '13px',
+                          fontFamily: 'Verdana, sans-serif'
+                        }
                       }
-                    }
-                  },
-                  tooltip: {
-                    pointFormat: '{series.name} <b>{point.y:,.0f}</b>',
-                    split: true
-                  },
-                  plotOptions: {
-                    area: {
-                      stacking: 'normal',
-                      lineColor: '#666666',
-                      lineWidth: 1,
-                      marker: {
-                        enabled: false,
-                        symbol: 'circle',
-                        radius: 2,
-                        states: {
-                          hover: {
-                            enabled: true
+                    },
+                    yAxis: {
+                      title: {
+                        text: 'Cards'
+                      },
+                      labels: {
+                        formatter: function () {
+                          return this.value;
+                        }
+                      }
+                    },
+                    tooltip: {
+                      pointFormat: '{series.name} <b>{point.y:,.0f}</b>',
+                      split: true
+                    },
+                    plotOptions: {
+                      area: {
+                        stacking: 'normal',
+                        lineColor: '#666666',
+                        lineWidth: 1,
+                        marker: {
+                          enabled: false,
+                          symbol: 'circle',
+                          radius: 2,
+                          states: {
+                            hover: {
+                              enabled: true
+                            }
                           }
                         }
                       }
-                    }
-                  },
-                  series: [{
-                    name: 'Backlog',
-                    data: obj.listBack,
-                    color: this.colorBack
-                  }, {
-                    name: 'Inprogress',
-                    data: obj.listInpr,
-                    color: this.colorInpro
-                  }, {
-                    name: 'Complete',
-                    data: obj.listComp,
-                    color: this.colorComp
-                  }]
-                });
-                
+                    },
+                    series: [{
+                      name: 'Backlog',
+                      data: obj.listBack,
+                      color: this.colorBack
+                    }, {
+                      name: 'Inprogress',
+                      data: obj.listInpr,
+                      color: this.colorInpro
+                    }, {
+                      name: 'Complete',
+                      data: obj.listComp,
+                      color: this.colorComp
+                    }]
+                  });
+                } else if (obj.dataHour) {
+                  console.log(obj.dataHour)
+                  let d = new Date();
+                  for (let item in obj.dataHour) {
+                    d.setHours(obj.dataHour[item]);
+                    d.setMinutes(0);
+                    let hours = '' + (d.getHours())
+                    let minutes = '' + (d.getMinutes())
+                    if (hours.length < 2) hours = '0' + hours;
+                    if (minutes.length < 2) minutes = '0' + minutes;
+                    let time = hours + ":" + minutes
+                    
+                    this.Hours[item] = time
+                  }
+                  console.log(this.Hours)
+                  jQuery('#container').highcharts({
+                    chart: {
+                      type: 'area'
+                    },
+                    title: {
+                      text: ''
+                    },
+                    xAxis: {
+                      // type: 'datetime',
+                      categories: this.Hours,
+                      labels: {
+                        rotation: -45,
+                        style: {
+                          fontSize: '13px',
+                          fontFamily: 'Verdana, sans-serif'
+                        }
+                      }
+                    },
+                    yAxis: {
+                      title: {
+                        text: 'Cards'
+                      },
+                      labels: {
+                        formatter: function () {
+                          return this.value;
+                        }
+                      }
+                    },
+                    tooltip: {
+                      pointFormat: '{series.name} <b>{point.y:,.0f}</b>',
+                      split: true
+                    },
+                    plotOptions: {
+                      area: {
+                        stacking: 'normal',
+                        lineWidth: 1,
+                        marker: {
+                          enabled: false,
+                          symbol: 'circle',
+                          radius: 2,
+                          states: {
+                            hover: {
+                              enabled: true
+                            }
+                          }
+                        }
+                      }
+                    },
+                    series: [{
+                      name: 'Backlog',
+                      data: obj.dataBack,
+                      color: this.colorBack
+                    }, {
+                      name: 'Inprogress',
+                      data: obj.dataInpr,
+                      color: this.colorInpro
+                    }, {
+                      name: 'Complete',
+                      data: obj.dataComp,
+                      color: this.colorComp
+                    }]
+                  });
+                }
+
+
               })
           }
           i++;
@@ -159,11 +239,11 @@ export class CfdComponent implements OnInit {
   }
 
   DateThisWeek(event) {
-    this.eventbtn=event;
-    this.class1="btn btn-info";
-    this.class2="btn btn-primary";
-    this.class3="btn btn-primary";
-    this.class4="btn btn-primary";
+    this.eventbtn = event;
+    this.class1 = "btn btn-info";
+    this.class2 = "btn btn-primary";
+    this.class3 = "btn btn-primary";
+    this.class4 = "btn btn-primary";
 
     let d = new Date()
     d.setDate(d.getDate() - 1)
@@ -255,29 +335,29 @@ export class CfdComponent implements OnInit {
           }]
         });
       });
-      if (this.startDate == this.endDate) {
-        console.log('WTF');
-        this.http.get('http://localhost:3000/dateactioncards/' + idBoards + '/' + this.startDate + '/' + this.endDate)
+    if (this.startDate == this.endDate) {
+      console.log('WTF');
+      this.http.get('http://localhost:3000/dateactioncards/' + idBoards + '/' + this.startDate + '/' + this.endDate)
         .subscribe(data => {
           console.log(data);
           var ch = data['_body'];
           var obj = JSON.parse(ch);
           console.log('เวลา ', obj.dataHour);
           let d = new Date(this.startDate);
-          for(let item in obj.dataHour){
+          for (let item in obj.dataHour) {
             d.setHours(obj.dataHour[item]);
             d.setMinutes(0);
             let hours = '' + (d.getHours())
             let minutes = '' + (d.getMinutes())
             if (hours.length < 2) hours = '0' + hours;
             if (minutes.length < 2) minutes = '0' + minutes;
-            let time = hours+":"+ minutes
+            let time = hours + ":" + minutes
             // console.log(hours+":"+ minutes)
             this.Hours[item] = time
-            
+
           }
           console.log(this.Hours)
-          
+
           this.colorComp = localStorage.getItem("colorComp");
           this.colorInpro = localStorage.getItem("colorInpro");
           this.colorBack = localStorage.getItem("colorBack");
@@ -344,14 +424,14 @@ export class CfdComponent implements OnInit {
             }]
           });
         });
-      }
+    }
   }
 
-  DateLastWeek(){
-    this.class1="btn btn-primary";
-    this.class2="btn btn-info";
-    this.class3="btn btn-primary";
-    this.class4="btn btn-primary";
+  DateLastWeek() {
+    this.class1 = "btn btn-primary";
+    this.class2 = "btn btn-info";
+    this.class3 = "btn btn-primary";
+    this.class4 = "btn btn-primary";
     let d = new Date()
     d.setDate(d.getDate() - 1)
     // let endDate = convertDates(d)
@@ -360,9 +440,9 @@ export class CfdComponent implements OnInit {
     d.setDate(d.getDate() - day)
     let endLastWeek = d
     let startLastWeek = d
-    startLastWeek.setDate(startLastWeek.getDate() -7)
+    startLastWeek.setDate(startLastWeek.getDate() - 7)
     let startDate = convertDates(startLastWeek)
-    endLastWeek.setDate(endLastWeek.getDate() +6)
+    endLastWeek.setDate(endLastWeek.getDate() + 6)
     let endDate = convertDates(endLastWeek)
     let [yearS, monthS, dateS, dayS] = startDate.split('-')
     let [yearE, monthE, dateE, dayE] = endDate.split('-')
@@ -371,7 +451,7 @@ export class CfdComponent implements OnInit {
     this.startDate = startDate
     this.endDate = endDate
     console.log(this.startDate)
-    console.log( this.endDate)
+    console.log(this.endDate)
     let idBoards = localStorage.getItem("namedashboards");
     const id = localStorage.getItem("id")
     console.log(id);
@@ -449,19 +529,19 @@ export class CfdComponent implements OnInit {
         });
       });
   }
-  
-  DateThisMonth(){
-    this.class1="btn btn-primary";
-    this.class2="btn btn-primary";
-    this.class3="btn btn-info";
-    this.class4="btn btn-primary";
+
+  DateThisMonth() {
+    this.class1 = "btn btn-primary";
+    this.class2 = "btn btn-primary";
+    this.class3 = "btn btn-info";
+    this.class4 = "btn btn-primary";
     let dStart = new Date()
     let dEnd = new Date()
     let date = dStart.getDate()
     dStart.setDate(1)
     let startDate = convertDates(dStart)
-    if(date!=1){
-        dEnd.setDate(dEnd.getDate()-1)
+    if (date != 1) {
+      dEnd.setDate(dEnd.getDate() - 1)
     }
     let endDate = convertDates(dEnd)
     let [yearS, monthS, dateS, dayS] = startDate.split('-')
@@ -471,7 +551,7 @@ export class CfdComponent implements OnInit {
     this.startDate = startDate
     this.endDate = endDate
     console.log(this.startDate)
-    console.log( this.endDate)
+    console.log(this.endDate)
     let idBoards = localStorage.getItem("namedashboards");
     const id = localStorage.getItem("id")
     console.log(id);
@@ -548,29 +628,29 @@ export class CfdComponent implements OnInit {
           }]
         });
       });
-      if(this.startDate == this.endDate) {
-        console.log('WTF');
-        this.http.get('http://localhost:3000/dateactioncards/' + idBoards + '/' + this.startDate + '/' + this.endDate)
+    if (this.startDate == this.endDate) {
+      console.log('WTF');
+      this.http.get('http://localhost:3000/dateactioncards/' + idBoards + '/' + this.startDate + '/' + this.endDate)
         .subscribe(data => {
           console.log(data);
           var ch = data['_body'];
           var obj = JSON.parse(ch);
           console.log('เวลา ', obj.dataHour);
           let d = new Date(this.startDate);
-          for(let item in obj.dataHour){
+          for (let item in obj.dataHour) {
             d.setHours(obj.dataHour[item]);
             d.setMinutes(0);
             let hours = '' + (d.getHours())
             let minutes = '' + (d.getMinutes())
             if (hours.length < 2) hours = '0' + hours;
             if (minutes.length < 2) minutes = '0' + minutes;
-            let time = hours+":"+ minutes
+            let time = hours + ":" + minutes
             // console.log(hours+":"+ minutes)
             this.Hours[item] = time
-            
+
           }
           console.log(this.Hours)
-          
+
           this.colorComp = localStorage.getItem("colorComp");
           this.colorInpro = localStorage.getItem("colorInpro");
           this.colorBack = localStorage.getItem("colorBack");
@@ -637,20 +717,20 @@ export class CfdComponent implements OnInit {
             }]
           });
         });
-      }
+    }
   }
 
-  DateLastMonth(){
-    this.class1="btn btn-primary";
-    this.class2="btn btn-primary";
-    this.class3="btn btn-primary";
-    this.class4="btn btn-info";
+  DateLastMonth() {
+    this.class1 = "btn btn-primary";
+    this.class2 = "btn btn-primary";
+    this.class3 = "btn btn-primary";
+    this.class4 = "btn btn-info";
     let dStart = new Date()
     let dEnd = new Date()
     dStart.setDate(1)
-    dStart.setMonth(dStart.getMonth()-1)
+    dStart.setMonth(dStart.getMonth() - 1)
     dEnd.setDate(1)
-    dEnd.setDate(dEnd.getDate()-1)
+    dEnd.setDate(dEnd.getDate() - 1)
     let startDate = convertDates(dStart)
     let endDate = convertDates(dEnd)
     let [yearS, monthS, dateS, dayS] = startDate.split('-')
@@ -660,7 +740,7 @@ export class CfdComponent implements OnInit {
     this.startDate = startDate
     this.endDate = endDate
     console.log(this.startDate)
-    console.log( this.endDate)
+    console.log(this.endDate)
     let idBoards = localStorage.getItem("namedashboards");
     const id = localStorage.getItem("id")
     console.log(id);
@@ -737,27 +817,25 @@ export class CfdComponent implements OnInit {
           }]
         });
       });
-    
+
   }
 
-  
-  
   private myDateRangePickerOptions: IMyDrpOptions = {
-  
+
     dateFormat: 'yyyy-mm-dd',
     minYear: 2014,
     disableDateRanges: [
-      {beginDate: {year: 1970, month: 1, day: 1}, endDate: {year: this.year1, month: this.month1, day: this.date1}},
-      {beginDate: {year: this.year2, month: this.month2, day: this.date2}, endDate: {year: 6000, month: 12, day: 12}}
-  ]
-  
+      { beginDate: { year: 1970, month: 1, day: 1 }, endDate: { year: this.year1, month: this.month1, day: this.date1 } },
+      { beginDate: { year: this.year2, month: this.month2, day: this.date2 }, endDate: { year: 6000, month: 12, day: 12 } }
+    ]
+
   };
 
   onDateRangeChanged(event: IMyDateRangeModel) {
-    this.class1="btn btn-primary";
-    this.class2="btn btn-primary";
-    this.class3="btn btn-primary";
-    this.class4="btn btn-primary";
+    this.class1 = "btn btn-primary";
+    this.class2 = "btn btn-primary";
+    this.class3 = "btn btn-primary";
+    this.class4 = "btn btn-primary";
     console.log(event.formatted);
     this.startDate = event.formatted.substring(0, 10)
     this.endDate = event.formatted.substring(13)
@@ -839,104 +917,104 @@ export class CfdComponent implements OnInit {
             }]
           });
         });
-    }else if (this.startDate == this.endDate) {
+    } else if (this.startDate == this.endDate) {
       console.log('WTF');
       this.http.get('http://localhost:3000/dateactioncards/' + idBoards + '/' + this.startDate + '/' + this.endDate)
-      .subscribe(data => {
-        console.log(data);
-        var ch = data['_body'];
-        var obj = JSON.parse(ch);
-        console.log('เวลา ', obj.dataHour);
-        let d = new Date(this.startDate);
-        for(let item in obj.dataHour){
-          d.setHours(obj.dataHour[item]);
-          d.setMinutes(0);
-          let hours = '' + (d.getHours())
-          let minutes = '' + (d.getMinutes())
-          if (hours.length < 2) hours = '0' + hours;
-          if (minutes.length < 2) minutes = '0' + minutes;
-          let time = hours+":"+ minutes
-          // console.log(hours+":"+ minutes)
-          this.Hours[item] = time
-          
-        }
-        console.log(this.Hours)
-        
-        this.colorComp = localStorage.getItem("colorComp");
-        this.colorInpro = localStorage.getItem("colorInpro");
-        this.colorBack = localStorage.getItem("colorBack");
-        jQuery('#container').highcharts({
-          chart: {
-            type: 'area'
-          },
-          title: {
-            text: ''
-          },
-          xAxis: {
-            // type: 'datetime',
-            categories: this.Hours,
-            labels: {
-              rotation: -45,
-              style: {
-                fontSize: '13px',
-                fontFamily: 'Verdana, sans-serif'
-              }
-            }
-          },
-          yAxis: {
-            title: {
-              text: 'Cards'
+        .subscribe(data => {
+          console.log(data);
+          var ch = data['_body'];
+          var obj = JSON.parse(ch);
+          console.log('เวลา ', obj.dataHour);
+          let d = new Date(this.startDate);
+          for (let item in obj.dataHour) {
+            d.setHours(obj.dataHour[item]);
+            d.setMinutes(0);
+            let hours = '' + (d.getHours())
+            let minutes = '' + (d.getMinutes())
+            if (hours.length < 2) hours = '0' + hours;
+            if (minutes.length < 2) minutes = '0' + minutes;
+            let time = hours + ":" + minutes
+            // console.log(hours+":"+ minutes)
+            this.Hours[item] = time
+
+          }
+          console.log(this.Hours)
+
+          this.colorComp = localStorage.getItem("colorComp");
+          this.colorInpro = localStorage.getItem("colorInpro");
+          this.colorBack = localStorage.getItem("colorBack");
+          jQuery('#container').highcharts({
+            chart: {
+              type: 'area'
             },
-            labels: {
-              formatter: function () {
-                return this.value;
+            title: {
+              text: ''
+            },
+            xAxis: {
+              // type: 'datetime',
+              categories: this.Hours,
+              labels: {
+                rotation: -45,
+                style: {
+                  fontSize: '13px',
+                  fontFamily: 'Verdana, sans-serif'
+                }
               }
-            }
-          },
-          tooltip: {
-            pointFormat: '{series.name} <b>{point.y:,.0f}</b>',
-            split: true
-          },
-          plotOptions: {
-            area: {
-              stacking: 'normal',
-              lineWidth: 1,
-              marker: {
-                enabled: false,
-                symbol: 'circle',
-                radius: 2,
-                states: {
-                  hover: {
-                    enabled: true
+            },
+            yAxis: {
+              title: {
+                text: 'Cards'
+              },
+              labels: {
+                formatter: function () {
+                  return this.value;
+                }
+              }
+            },
+            tooltip: {
+              pointFormat: '{series.name} <b>{point.y:,.0f}</b>',
+              split: true
+            },
+            plotOptions: {
+              area: {
+                stacking: 'normal',
+                lineWidth: 1,
+                marker: {
+                  enabled: false,
+                  symbol: 'circle',
+                  radius: 2,
+                  states: {
+                    hover: {
+                      enabled: true
+                    }
                   }
                 }
               }
-            }
-          },
-          series: [{
-            name: 'Backlog',
-            data: obj.dataBack,
-            color: this.colorBack
-          }, {
-            name: 'Inprogress',
-            data: obj.dataInpr,
-            color: this.colorInpro
-          }, {
-            name: 'Complete',
-            data: obj.dataComp,
-            color: this.colorComp
-          }]
+            },
+            series: [{
+              name: 'Backlog',
+              data: obj.dataBack,
+              color: this.colorBack
+            }, {
+              name: 'Inprogress',
+              data: obj.dataInpr,
+              color: this.colorInpro
+            }, {
+              name: 'Complete',
+              data: obj.dataComp,
+              color: this.colorComp
+            }]
+          });
         });
-      });
     }
   }
 
   ngOnInit() {
-    
+
   }
 
-  
- 
+
+
 
 }
 export const convertDates = (d) => {

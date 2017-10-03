@@ -34,7 +34,7 @@
           <br>
         </td>
       </tr>
-      <tr *ngFor="let bodys of body | paginate: { itemsPerPage: 15, currentPage: p }">
+      <tr *ngFor="let bodys of body | paginate: { itemsPerPage: 10, currentPage: p }">
 
         <td *ngIf="bodys && bodys.type == 'commentCard'">
           <div class="well well-lg" align="center">
