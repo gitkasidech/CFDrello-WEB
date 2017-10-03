@@ -6,6 +6,7 @@ import { DaterangepickerConfig } from 'ng2-daterangepicker';
 import { DataService } from '../data.service';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Http, Response, Headers } from '@angular/http';
+import { environment } from '../../environments/environment';
 
 declare var jQuery: any;
 
@@ -20,6 +21,7 @@ declare var jQuery: any;
 
 
 export class CfdComponent implements OnInit {
+  apiUrl: any;
   class1 = "btn btn-info";
   class2 = "btn btn-primary";
   class3 = "btn btn-primary";
@@ -59,7 +61,7 @@ export class CfdComponent implements OnInit {
   year2 = this.d2.getFullYear()
 
   constructor(private myService: DataService, private formBuilder: FormBuilder, private http: Http) {
-
+    this.apiUrl = environment.apiUrl;
     const id = localStorage.getItem("id")
     console.log(id);
     this.myService.getBoardsLists(id)
@@ -77,7 +79,7 @@ export class CfdComponent implements OnInit {
             console.log(localStorage.getItem("idboard"));
             const headers = new Headers();
             headers.append('Content-Type', 'application/json');
-            this.http.post('http://localhost:3000/createlcad/',
+            this.http.post(this.apiUrl+'/createlcad/',
               JSON.stringify(this.dashboardsname[i]), { headers: headers })
               .subscribe(data => {
                 console.log(data['_body']);
@@ -262,7 +264,7 @@ export class CfdComponent implements OnInit {
     let idBoards = localStorage.getItem("namedashboards");
     const id = localStorage.getItem("id")
     console.log(id);
-    this.http.get('http://localhost:3000/dateactioncards/' + idBoards + '/' + this.startDate + '/' + this.endDate)
+    this.http.get(this.apiUrl+'/dateactioncards/' + idBoards + '/' + this.startDate + '/' + this.endDate)
       .subscribe(data => {
         console.log(data);
         var ch = data['_body'];
@@ -337,7 +339,7 @@ export class CfdComponent implements OnInit {
       });
     if (this.startDate == this.endDate) {
       console.log('WTF');
-      this.http.get('http://localhost:3000/dateactioncards/' + idBoards + '/' + this.startDate + '/' + this.endDate)
+      this.http.get(this.apiUrl+'/dateactioncards/' + idBoards + '/' + this.startDate + '/' + this.endDate)
         .subscribe(data => {
           console.log(data);
           var ch = data['_body'];
@@ -455,7 +457,7 @@ export class CfdComponent implements OnInit {
     let idBoards = localStorage.getItem("namedashboards");
     const id = localStorage.getItem("id")
     console.log(id);
-    this.http.get('http://localhost:3000/dateactioncards/' + idBoards + '/' + this.startDate + '/' + this.endDate)
+    this.http.get(this.apiUrl+'/dateactioncards/' + idBoards + '/' + this.startDate + '/' + this.endDate)
       .subscribe(data => {
         console.log(data);
         var ch = data['_body'];
@@ -555,7 +557,7 @@ export class CfdComponent implements OnInit {
     let idBoards = localStorage.getItem("namedashboards");
     const id = localStorage.getItem("id")
     console.log(id);
-    this.http.get('http://localhost:3000/dateactioncards/' + idBoards + '/' + this.startDate + '/' + this.endDate)
+    this.http.get(this.apiUrl+'/dateactioncards/' + idBoards + '/' + this.startDate + '/' + this.endDate)
       .subscribe(data => {
         console.log(data);
         var ch = data['_body'];
@@ -630,7 +632,7 @@ export class CfdComponent implements OnInit {
       });
     if (this.startDate == this.endDate) {
       console.log('WTF');
-      this.http.get('http://localhost:3000/dateactioncards/' + idBoards + '/' + this.startDate + '/' + this.endDate)
+      this.http.get(this.apiUrl+'/dateactioncards/' + idBoards + '/' + this.startDate + '/' + this.endDate)
         .subscribe(data => {
           console.log(data);
           var ch = data['_body'];
@@ -744,7 +746,7 @@ export class CfdComponent implements OnInit {
     let idBoards = localStorage.getItem("namedashboards");
     const id = localStorage.getItem("id")
     console.log(id);
-    this.http.get('http://localhost:3000/dateactioncards/' + idBoards + '/' + this.startDate + '/' + this.endDate)
+    this.http.get(this.apiUrl+'/dateactioncards/' + idBoards + '/' + this.startDate + '/' + this.endDate)
       .subscribe(data => {
         console.log(data);
         var ch = data['_body'];
@@ -845,7 +847,7 @@ export class CfdComponent implements OnInit {
     const id = localStorage.getItem("id")
     console.log(id);
     if (this.startDate != this.endDate) {
-      this.http.get('http://localhost:3000/dateactioncards/' + idBoards + '/' + this.startDate + '/' + this.endDate)
+      this.http.get(this.apiUrl+'/dateactioncards/' + idBoards + '/' + this.startDate + '/' + this.endDate)
         .subscribe(data => {
           console.log(data);
           var ch = data['_body'];
@@ -919,7 +921,7 @@ export class CfdComponent implements OnInit {
         });
     } else if (this.startDate == this.endDate) {
       console.log('WTF');
-      this.http.get('http://localhost:3000/dateactioncards/' + idBoards + '/' + this.startDate + '/' + this.endDate)
+      this.http.get(this.apiUrl+'/dateactioncards/' + idBoards + '/' + this.startDate + '/' + this.endDate)
         .subscribe(data => {
           console.log(data);
           var ch = data['_body'];

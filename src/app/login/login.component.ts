@@ -6,7 +6,7 @@ import 'rxjs/add/operator/retry';
 import { Observable, Observer } from 'rxjs';
 import { AuthGuard } from '../guards/index';
 import { YourdashboardComponent } from '../yourdashboard/yourdashboard.component';
-
+import { environment } from '../../environments/environment';
 
 
 declare var Trello: any;
@@ -22,21 +22,23 @@ declare var Trello: any;
 
 })
 export class LoginComponent implements OnInit {
- 
+  apiUrl: any;
 
-  constructor(public http: Http, private router: Router) {}
+  constructor(public http: Http, private router: Router) {
+    this.apiUrl = environment.apiUrl;
+  }
 
   ngOnInit() { }
 
   login() {
-
+    
     if (localStorage.getItem("token")&&localStorage.getItem("id")) {
       console.log("Crazy");
       console.log(localStorage.getItem("token"));
       this.router.navigate(['/yourdashboard']);
       
     }else{
-      window.location.href = "http://localhost:3000/login"
+      window.location.href = this.apiUrl+"/login"
     }
 
   }

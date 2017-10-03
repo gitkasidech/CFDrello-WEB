@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { Http, Response, Headers } from '@angular/http';
 import { IMyDrpOptions, IMyDateRangeModel } from 'mydaterangepicker';
+import { environment } from '../../environments/environment';
 
 
 @Component({
@@ -11,6 +12,7 @@ import { IMyDrpOptions, IMyDateRangeModel } from 'mydaterangepicker';
 
 })
 export class ActivityComponent implements OnInit {
+  apiUrl: any;
   class1="btn btn-info";
   class2="btn btn-primary";
   class3="btn btn-primary";
@@ -40,9 +42,7 @@ export class ActivityComponent implements OnInit {
   year2 = this.d2.getFullYear()
 
   constructor(private http: Http, private myService: DataService) {
-
-
-
+    this.apiUrl = environment.apiUrl;
     const id = localStorage.getItem("id")
     // console.log(id);
     this.myService.getBoardsLists(id)
@@ -60,7 +60,7 @@ export class ActivityComponent implements OnInit {
             // console.log(localStorage.getItem("idboard"));
             const headers = new Headers();
             headers.append('Content-Type', 'application/json');
-            this.http.post('http://localhost:3000/createlcad/',
+            this.http.post(this.apiUrl+'/createlcad/',
               JSON.stringify(this.dashboardsname[items]), { headers: headers })
               .subscribe(data => {
                 console.log(data['_body']);
@@ -89,7 +89,7 @@ export class ActivityComponent implements OnInit {
     let idBoards = localStorage.getItem("idboard")
     // const id = localStorage.getItem("id")
     // console.log(id);
-    this.http.get('http://localhost:3000/getactionactivity/' + idBoards + '/' + this.startDate + '/' + this.endDate)
+    this.http.get(this.apiUrl+'/getactionactivity/' + idBoards + '/' + this.startDate + '/' + this.endDate)
       .subscribe(data => {
         console.log(data);
         var ch = data['_body'];
@@ -159,7 +159,7 @@ export class ActivityComponent implements OnInit {
     let idBoards = localStorage.getItem("idboard")
     const id = localStorage.getItem("id")
     console.log(id);
-    this.http.get('http://localhost:3000/getactionactivity/' + idBoards + '/' + this.startDate + '/' + this.endDate)
+    this.http.get(this.apiUrl+'/getactionactivity/' + idBoards + '/' + this.startDate + '/' + this.endDate)
       .subscribe(data => {
         console.log(data);
         var ch = data['_body'];
@@ -230,7 +230,7 @@ export class ActivityComponent implements OnInit {
     let idBoards = localStorage.getItem("idboard")
     const id = localStorage.getItem("id")
     console.log(id);
-    this.http.get('http://localhost:3000/getactionactivity/' + idBoards + '/' + this.startDate + '/' + this.endDate)
+    this.http.get(this.apiUrl+'/getactionactivity/' + idBoards + '/' + this.startDate + '/' + this.endDate)
       .subscribe(data => {
         console.log(data);
         var ch = data['_body'];
@@ -298,7 +298,7 @@ export class ActivityComponent implements OnInit {
     let idBoards = localStorage.getItem("idboard")
     const id = localStorage.getItem("id")
     console.log(idBoards);
-    this.http.get('http://localhost:3000/getactionactivity/' + idBoards + '/' + this.startDate + '/' + this.endDate)
+    this.http.get(this.apiUrl+'/getactionactivity/' + idBoards + '/' + this.startDate + '/' + this.endDate)
       .subscribe(data => {
         console.log(data);
         var ch = data['_body'];
@@ -367,7 +367,7 @@ export class ActivityComponent implements OnInit {
     let idBoards = localStorage.getItem("idboard")
     const id = localStorage.getItem("id")
     console.log(id);
-    this.http.get('http://localhost:3000/getactionactivity/' + idBoards + '/' + this.startDate + '/' + this.endDate)
+    this.http.get(this.apiUrl+'/getactionactivity/' + idBoards + '/' + this.startDate + '/' + this.endDate)
       .subscribe(data => {
         console.log(data);
         var ch = data['_body'];
@@ -436,7 +436,7 @@ export class ActivityComponent implements OnInit {
     const id = localStorage.getItem("id")
     console.log(id);
     if (this.startDate != this.endDate) {
-      this.http.get('http://localhost:3000/getactionactivity/' + idBoards + '/' + this.startDate + '/' + this.endDate)
+      this.http.get(this.apiUrl+'/getactionactivity/' + idBoards + '/' + this.startDate + '/' + this.endDate)
         .subscribe(data => {
           console.log(data);
           var ch = data['_body'];
@@ -478,7 +478,7 @@ export class ActivityComponent implements OnInit {
         });
     } else if (this.startDate = this.endDate) {
       console.log('WTF');
-      this.http.get('http://localhost:3000/getactionactivity/' + idBoards + '/' + this.startDate + '/' + this.endDate)
+      this.http.get(this.apiUrl+'/getactionactivity/' + idBoards + '/' + this.startDate + '/' + this.endDate)
         .subscribe(data => {
           console.log(data);
           var ch = data['_body'];

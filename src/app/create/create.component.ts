@@ -9,11 +9,7 @@ import { DataService } from '../data.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { GettokenComponent } from '../gettoken/gettoken.component';
 import {ColorPickerDirective, ColorPickerService, Rgba} from 'angular2-color-picker'
-
-
-
-
-
+import { environment } from '../../environments/environment';
 import { YourdashboardComponent } from '../yourdashboard/yourdashboard.component';
 
 declare var Trello: any;
@@ -27,12 +23,11 @@ export class Cmyk {
     templateUrl: './create.component.html',
     // styles: ['input.ng-invalid{border-left:5px solid red;}'],
     styleUrls: ['./create.component.css'],
-
     providers: [Modal, DataService],
 
 })
 export class CreateComponent implements OnInit {
-
+    apiUrl: any;
     boards = null;
     name = "default board";
     comColor = "#4ac216";
@@ -67,6 +62,7 @@ export class CreateComponent implements OnInit {
         this.arrayColors['color3'] = 'rgb(255,245,0)';
         this.arrayColors['color4'] = 'rgb(236,64,64)';
         this.arrayColors['color5'] = 'rgba(45,208,45,1)';
+        this.apiUrl = environment.apiUrl;
     }
 
     private color: string = '#2889e9';
@@ -130,7 +126,7 @@ export class CreateComponent implements OnInit {
 
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        this.http.post('http://localhost:3000/dashboards',
+        this.http.post(this.apiUrl+'/dashboards',
             JSON.stringify(value), { headers: headers })
             .map(response => response.json())
             .subscribe(response => {
