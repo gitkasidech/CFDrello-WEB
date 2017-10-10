@@ -9,6 +9,7 @@ import { Http, Response, Headers } from '@angular/http';
 import { environment } from '../../environments/environment';
 
 declare var jQuery: any;
+declare var $: any;
 
 @Component({
   selector: 'app-cfd',
@@ -90,7 +91,7 @@ export class CfdComponent implements OnInit {
                 this.colorInpro = localStorage.getItem("colorInpro");
                 this.colorBack = localStorage.getItem("colorBack");
                 if (obj.listDate) {
-                  jQuery('#container').highcharts({
+                  $('#container').highcharts({
                     chart: {
                       type: 'area'
                     },
