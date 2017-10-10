@@ -19,6 +19,7 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
+<<<<<<< HEAD
         "../node_modules/bootstrap/dist/css/bootstrap.css",
         "../node_modules/angular2-busy/build/style/busy.css",
         "styles.css"
@@ -32,6 +33,16 @@
         "../node_modules/jquery/dist/jquery.js",
         "../node_modules/css-loader/lib/loader.js"
       ],
+=======
+        "../node_modules/jquery/dist/jquery.slim.min.js",
+        "../node_modules/popper.js/dist/popper.min.js",
+        "../node_modules/bootstrap/dist/js/bootstrap.min.js",
+        "../node_modules/jquery/dist/jquery.min.js"
+        
+
+      ],
+      "scripts": [],
+>>>>>>> 6532751c763079bdc40436973321b85ffff3e4bc
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

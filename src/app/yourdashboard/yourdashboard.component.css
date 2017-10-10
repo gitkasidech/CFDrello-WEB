@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 th, td {
     text-align: left;
     padding: 8px;
@@ -18,4 +19,9 @@ th, td {
     padding: 20px;
     /* width: 100%; 
     height: 60% */
+=======
+th, td {
+    text-align: left;
+    padding: 8px;
+>>>>>>> 6532751c763079bdc40436973321b85ffff3e4bc
 }
