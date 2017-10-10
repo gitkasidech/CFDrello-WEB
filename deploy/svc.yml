@@ -1,0 +1,15 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: cfdrelloweb
+  namespace: trainee
+spec:
+  selector:
+    app: cfdrelloweb
+  type: NodePort
+  ports:
+  - name: cfdrelloweb
+    protocol: TCP
+    port: 4200
+    targetPort: 4200
+    nodePort: 30356

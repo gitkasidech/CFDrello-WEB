@@ -4,7 +4,6 @@ import { Observable } from 'rxjs/Observable';
 import { Router, RouterModule, } from '@angular/router';
 import { Http, Response, Headers } from '@angular/http';
 import { tokenNotExpired } from 'angular2-jwt';
-import Trello from 'Trello';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
