@@ -3,7 +3,6 @@
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-<<<<<<< HEAD
 </head>
 
 <body>
@@ -24,42 +23,10 @@
         <tr *ngFor="let dashboards of dashboardsname | paginate: { itemsPerPage: 6, currentPage: p }">
           <td><button class="w3-button w3-white w3-border" [value]="dashboards._id" (click)="sendToChart($event.target.value)">{{dashboards.name}}</button></td>
           <!-- <td style="text-align: right;"><button class="w3-button w3-white w3-border">Delete</button></td> -->
-=======
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script src="https://trello.com/1/client.js?key=575d84734099f396a4f25e78af69730b"></script>
-  <script src="https://api.trello.com/1/organizations/myorganization/boards?key=0c0448fe0859bc978758a937fea22dc5"></script>
-</head>
-
-<body>
-  <div class="container">
-    <div class="container">
-      <div style="border-bottom:1px solid #111;">
-        <table width="100%" border="0">
-          <tr>
-            <td>
-              <h4>Your Dashboard</h4>
-            </td>
-            <td width="10%" text-alight="center">
-              <button type="button" class="w3-button w3-green" (click)="LinkCreate()"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>  Create</button>
-            </td>
-          </tr>
-        </table>
-      </div>
-    </div>
-    <br><br>
-    <div class="container">
-      <table class="w3-table w3-bordered">
-        <tr *ngFor="let dashboards of dashboardsname" >
-          <td><button class="btn btn-default"  [value]="dashboards._id" (click)="sendToChart($event.target.value)">{{dashboards.name}}</button></td>
->>>>>>> 6532751c763079bdc40436973321b85ffff3e4bc
         </tr>
       </table>
     </div>
   </div>
-<<<<<<< HEAD
   <br><br><br><br><br>
   <div class="footer">
     <p>
@@ -68,8 +35,6 @@
   </div>
 
 
-=======
->>>>>>> 6532751c763079bdc40436973321b85ffff3e4bc
 </body>
 
 </html>

@@ -19,26 +19,8 @@ export class AuthGuard implements CanActivate {
       return false;
     }
     return true;
-<<<<<<< HEAD
 
   }
 }
   
-=======
-   
-    // console.log("HaveToken");
-    // return true;
-  }
-}
-  // canActivate() {
-
-  //   let keyToken = localStorage.getItem("token");
-  //   console.log(keyToken);
-  // if (!keyToken) {
-  //   window.location.replace("");
-  // }
-  // else {
-  //   window.location.replace("/headdashboard");
-  // }
->>>>>>> 6532751c763079bdc40436973321b85ffff3e4bc
 

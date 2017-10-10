@@ -40,11 +40,7 @@
 /** Evergreen browsers require these. **/
 import 'core-js/es6/reflect';
 import 'core-js/es7/reflect';
-<<<<<<< HEAD
 import 'web-animations-js';
-=======
-
->>>>>>> 6532751c763079bdc40436973321b85ffff3e4bc
 
 /**
  * Required to support Web Animations `@angular/animation`.
