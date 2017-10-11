@@ -9,6 +9,7 @@ import { Http, Response, Headers } from '@angular/http';
 import { environment } from '../../environments/environment';
 
 declare var jQuery: any;
+declare var Highcharts: any;
 
 @Component({
   selector: 'app-cfd',
@@ -90,7 +91,7 @@ export class CfdComponent implements OnInit {
                 this.colorInpro = localStorage.getItem("colorInpro");
                 this.colorBack = localStorage.getItem("colorBack");
                 if (obj.listDate) {
-                  jQuery('#container').highcharts({
+                  Highcharts.chart('container',{
                     chart: {
                       type: 'area'
                     },
@@ -167,7 +168,7 @@ export class CfdComponent implements OnInit {
                     this.Hours[item] = time
                   }
                   console.log(this.Hours)
-                  jQuery('#container').highcharts({
+                  Highcharts.chart('container',{
                     chart: {
                       type: 'area'
                     },
@@ -273,7 +274,7 @@ export class CfdComponent implements OnInit {
         this.colorComp = localStorage.getItem("colorComp");
         this.colorInpro = localStorage.getItem("colorInpro");
         this.colorBack = localStorage.getItem("colorBack");
-        jQuery('#container').highcharts({
+        Highcharts.chart('container',{
           chart: {
             type: 'area'
           },
@@ -363,7 +364,7 @@ export class CfdComponent implements OnInit {
           this.colorComp = localStorage.getItem("colorComp");
           this.colorInpro = localStorage.getItem("colorInpro");
           this.colorBack = localStorage.getItem("colorBack");
-          jQuery('#container').highcharts({
+          Highcharts.chart('container',{
             chart: {
               type: 'area'
             },
@@ -466,7 +467,7 @@ export class CfdComponent implements OnInit {
         this.colorComp = localStorage.getItem("colorComp");
         this.colorInpro = localStorage.getItem("colorInpro");
         this.colorBack = localStorage.getItem("colorBack");
-        jQuery('#container').highcharts({
+        Highcharts.chart('container',{
           chart: {
             type: 'area'
           },
@@ -566,7 +567,7 @@ export class CfdComponent implements OnInit {
         this.colorComp = localStorage.getItem("colorComp");
         this.colorInpro = localStorage.getItem("colorInpro");
         this.colorBack = localStorage.getItem("colorBack");
-        jQuery('#container').highcharts({
+        Highcharts.chart('container',{
           chart: {
             type: 'area'
           },
@@ -656,7 +657,7 @@ export class CfdComponent implements OnInit {
           this.colorComp = localStorage.getItem("colorComp");
           this.colorInpro = localStorage.getItem("colorInpro");
           this.colorBack = localStorage.getItem("colorBack");
-          jQuery('#container').highcharts({
+          Highcharts.chart('container',{
             chart: {
               type: 'area'
             },
@@ -755,7 +756,7 @@ export class CfdComponent implements OnInit {
         this.colorComp = localStorage.getItem("colorComp");
         this.colorInpro = localStorage.getItem("colorInpro");
         this.colorBack = localStorage.getItem("colorBack");
-        jQuery('#container').highcharts({
+        Highcharts.chart('container',{
           chart: {
             type: 'area'
           },
@@ -856,7 +857,7 @@ export class CfdComponent implements OnInit {
           this.colorComp = localStorage.getItem("colorComp");
           this.colorInpro = localStorage.getItem("colorInpro");
           this.colorBack = localStorage.getItem("colorBack");
-          jQuery('#container').highcharts({
+          Highcharts.chart('container',{
             chart: {
               type: 'area'
             },
@@ -945,7 +946,7 @@ export class CfdComponent implements OnInit {
           this.colorComp = localStorage.getItem("colorComp");
           this.colorInpro = localStorage.getItem("colorInpro");
           this.colorBack = localStorage.getItem("colorBack");
-          jQuery('#container').highcharts({
+          Highcharts.chart('container',{
             chart: {
               type: 'area'
             },
