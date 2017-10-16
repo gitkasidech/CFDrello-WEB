@@ -9,7 +9,15 @@ import { DataService } from '../data.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { GettokenComponent } from '../gettoken/gettoken.component';
 import {ColorPickerDirective, ColorPickerService, Rgba} from 'angular2-color-picker'
+<<<<<<< HEAD
 import { environment } from '../../environments/environment';
+=======
+
+
+
+
+
+>>>>>>> 5211c652c6b7fa9416d80cf824ebf19ef69720b0
 import { YourdashboardComponent } from '../yourdashboard/yourdashboard.component';
 
 declare var Trello: any;
@@ -21,15 +29,26 @@ export class Cmyk {
 @Component({
     selector: 'app-create',
     templateUrl: './create.component.html',
+<<<<<<< HEAD
     // styles: ['input.ng-invalid{border-left:5px solid red;}'],
     styleUrls: ['./create.component.css'],
+=======
+    styles: ['input.ng-invalid{border-left:5px solid red;}'],
+
+>>>>>>> 5211c652c6b7fa9416d80cf824ebf19ef69720b0
     providers: [Modal, DataService],
 
 })
 export class CreateComponent implements OnInit {
+<<<<<<< HEAD
     apiUrl: any;
     boards = null;
     name = "default board";
+=======
+
+    boards = null;
+    name = "untitle dashboards";
+>>>>>>> 5211c652c6b7fa9416d80cf824ebf19ef69720b0
     comColor = "#4ac216";
     inColor = "#ffff15";
     backColor = "#ff0000";
@@ -62,7 +81,10 @@ export class CreateComponent implements OnInit {
         this.arrayColors['color3'] = 'rgb(255,245,0)';
         this.arrayColors['color4'] = 'rgb(236,64,64)';
         this.arrayColors['color5'] = 'rgba(45,208,45,1)';
+<<<<<<< HEAD
         this.apiUrl = environment.apiUrl;
+=======
+>>>>>>> 5211c652c6b7fa9416d80cf824ebf19ef69720b0
     }
 
     private color: string = '#2889e9';
@@ -126,7 +148,11 @@ export class CreateComponent implements OnInit {
 
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');
+<<<<<<< HEAD
         this.http.post(this.apiUrl+'/dashboards',
+=======
+        this.http.post('http://localhost:4444/dashboards',
+>>>>>>> 5211c652c6b7fa9416d80cf824ebf19ef69720b0
             JSON.stringify(value), { headers: headers })
             .map(response => response.json())
             .subscribe(response => {

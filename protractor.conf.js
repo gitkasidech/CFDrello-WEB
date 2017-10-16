@@ -12,7 +12,8 @@ exports.config = {
         'browserName': 'chrome'
     },
     directConnect: true,
-    baseUrl: 'http://35.201.143.32:30356/',
+    baseUrl: 'http://127.0.0.1:4200/',
+    // baseUrl: 'http://35.201.143.32:30356/', -->ip computerlogy
     framework: 'jasmine',
     jasmineNodeOpts: {
         showColors: true,
